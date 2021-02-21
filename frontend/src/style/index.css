@@ -12,6 +12,16 @@ code {
     monospace;
 }
 
+.nav-link-style {
+    background: #fd7c2a;
+    text-decoration: none;
+    transition: background 0.5s;
+}
+
+.nav-link-style:hover {
+    background: #fd7c2a;
+}
+
 a {
     color: black !important;
     text-decoration: none !important;

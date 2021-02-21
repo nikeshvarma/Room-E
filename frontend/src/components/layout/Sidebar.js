@@ -1,28 +1,32 @@
 import React from 'react';
-import {Nav} from 'react-bootstrap';
+import {ListGroup} from 'react-bootstrap';
 import {NavLink} from "react-router-dom";
 
 const Sidebar = () => {
     return (
-        <div className="side-tab">
-            <Nav className="bg-danger sidebar">
-                <Nav.Link>
-                    <NavLink to="/signup">Sign Up</NavLink>
-                </Nav.Link>
-                <hr/>
-                <Nav.Link>
-                    <NavLink to="/login">Login</NavLink>
-                </Nav.Link>
-                <hr/>
-                <Nav.Link>
-                    <NavLink to="/about">About</NavLink>
-                </Nav.Link>
-                <hr/>
-                <Nav.Link>
-                    <NavLink to="/contact">Contact</NavLink>
-                </Nav.Link>
-                <hr/>
-            </Nav>
+        <div className="side-tab text-center">
+            <ListGroup>
+                <NavLink to="/signup">
+                    <ListGroup.Item>
+                        Sign Up
+                    </ListGroup.Item>
+                </NavLink>
+                <NavLink to="/login">
+                    <ListGroup.Item>
+                        Login
+                    </ListGroup.Item>
+                </NavLink>
+                <NavLink to="/about">
+                    <ListGroup.Item>
+                        About
+                    </ListGroup.Item>
+                </NavLink>
+                <NavLink to="/contact">
+                    <ListGroup.Item>
+                        Contact
+                    </ListGroup.Item>
+                </NavLink>
+            </ListGroup>,
         </div>
     );
 };

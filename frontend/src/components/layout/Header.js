@@ -10,7 +10,6 @@ const Header = () => {
 
     const handleClick = () => {
         setClick(!click)
-        console.log('click', click)
     }
 
     return (

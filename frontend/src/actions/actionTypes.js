@@ -1,0 +1,1 @@
+export const isAuthTrue = "IS_AUTH_TRUE";

@@ -2,10 +2,9 @@ import React from 'react';
 import {ListGroup} from 'react-bootstrap';
 import {NavLink} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {is_auth_true, is_auth_false} from '../../actions/authAction'
+import {authTrue, authFalse} from "../../redux/auth/authActions";
 
 const Sidebar = () => {
-
     const isAuth = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
@@ -25,7 +24,7 @@ const Sidebar = () => {
                             </ListGroup.Item>
                         </NavLink>
                         <NavLink to="/login">
-                            <ListGroup.Item className="nav-link-style" onClick={() => dispatch(is_auth_true('1234567890'))}>
+                            <ListGroup.Item className="nav-link-style" onClick={() => dispatch(authTrue('1234567890'))}>
                                 Login
                             </ListGroup.Item>
                         </NavLink>
@@ -52,7 +51,7 @@ const Sidebar = () => {
                 {
                     isAuth &&
                     <NavLink to="/logout">
-                        <ListGroup.Item className="nav-link-style" onClick={() => dispatch(is_auth_false('1234567890'))}>
+                        <ListGroup.Item className="nav-link-style" onClick={() => dispatch(authFalse())}>
                             Logout
                         </ListGroup.Item>
                     </NavLink>

@@ -6,11 +6,11 @@ import App from './App';
 import "bootstrap/dist/css/bootstrap.css";
 import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
-import isAuth from "./reducers/isAuth";
+import isAuthReducer from "./redux/auth/authReducer";
 
 
 const store = createStore(combineReducers({
-        auth: isAuth
+        auth: isAuthReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )

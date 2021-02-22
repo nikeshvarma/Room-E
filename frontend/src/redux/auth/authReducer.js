@@ -1,12 +1,14 @@
 import Cookies from "js-cookie";
+import {IS_AUTH, IS_AUTH_FALSE} from "./authTypes";
 
-const isAuth = (state = false, action) => {
+
+const isAuthReducer = (state = false, action) => {
     switch (action.type) {
-        case 'IS_AUTH':
+        case IS_AUTH:
             Cookies.set('auth_token', action.payload)
             return true
 
-        case 'NOT_AUTH':
+        case IS_AUTH_FALSE:
             Cookies.remove('auth_token')
             return false
 
@@ -15,4 +17,4 @@ const isAuth = (state = false, action) => {
     }
 };
 
-export default isAuth;
+export default isAuthReducer;

@@ -41,3 +41,8 @@ a {
     width: 310px;
     height: 92%;
 }
+
+a.active {
+    background: #fd7c2a;
+    border-radius: 1.25rem;
+}

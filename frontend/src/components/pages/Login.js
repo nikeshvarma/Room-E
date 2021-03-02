@@ -1,34 +1,36 @@
 import React from 'react';
+import {useForm} from "react-hook-form";
 import "../../style/auth.css";
-import {TextField} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import {Https} from "@material-ui/icons";
 import {Card} from "react-bootstrap";
 
 
 const Login = () => {
+
+    const {register, handleSubmit, errors} = useForm();
+    const onSubmit = (data) => {
+        console.log(data)
+    }
+    // const dispatch = useDispatch();
+
     return (
         <div>
             <div className="d-flex justify-content-center login-form">
                 <Card className="m-5">
-                    <div className="card-body shadow">
-                        <div className="d-flex justify-content-center">
+                    <Card.Body className="shadow">
+
+                        <Card.Title className="d-flex justify-content-center">
                             <h3>LOGIN</h3>
-                        </div>
-                        <form>
-                            <TextField fullWidth margin="normal" id="outlined-basic" label="Email" variant="outlined"/>
-                            <br/>
-                            <TextField fullWidth margin="normal" id="outlined-basic" label="Password" variant="outlined"/>
-                            <Button
-                                className="text-center"
-                                variant="contained"
-                                color="primary"
-                                endIcon={<Https/>}
-                            >
-                                Login
-                            </Button>
+                        </Card.Title>
+
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <input className="form-control my-2" type="email" name="email" placeholder="Email"
+                                   ref={register({required: "This field is required"})}/>
+                            <input className="form-control my-2" type="password" name="password" placeholder="Password"
+                                   ref={register({required: true})}/>
+                            <button type="submit" className="btn m-auto btn-success">Login</button>
                         </form>
-                    </div>
+
+                    </Card.Body>
                 </Card>
             </div>
         </div>

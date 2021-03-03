@@ -12,7 +12,7 @@ const Header = () => {
             <Navbar bg="light" expand="md" variant="light">
                 <Navbar.Text>
                     <NavLink to="/">
-                        <h1 className="text-dark">Roome</h1>
+                        <h2 className="text-dark">ROOME</h2>
                     </NavLink>
                 </Navbar.Text>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>

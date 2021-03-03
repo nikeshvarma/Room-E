@@ -13,9 +13,9 @@ const Login = () => {
     // const dispatch = useDispatch();
 
     return (
-        <div>
+        <>
             <div className="d-flex justify-content-center login-form">
-                <Card className="m-5">
+                <Card className="auth-form-width">
                     <Card.Body className="shadow">
 
                         <Card.Title className="d-flex justify-content-center">
@@ -23,17 +23,20 @@ const Login = () => {
                         </Card.Title>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <input className="form-control my-2" type="email" name="email" placeholder="Email"
+                            <input className="form-control my-3" type="email" name="email" placeholder="Email"
                                    ref={register({required: "This field is required"})}/>
-                            <input className="form-control my-2" type="password" name="password" placeholder="Password"
+                            <input className="form-control my-3" type="password" name="password" placeholder="Password"
                                    ref={register({required: true})}/>
-                            <button type="submit" className="btn m-auto btn-success">Login</button>
+                            <div className="d-flex justify-content-center mt-4">
+                                <button type="submit" className="btn btn-success">Login</button>
+                            </div>
+
                         </form>
 
                     </Card.Body>
                 </Card>
             </div>
-        </div>
+        </>
     );
 };
 

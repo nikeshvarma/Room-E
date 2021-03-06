@@ -65,6 +65,9 @@ CORS_ALLOWED_ORIGINS = [
 
 ROOT_URLCONF = 'backend.urls'
 
+# CUSTOM USER MODEL
+AUTH_USER_MODEL = 'AUTH.AuthUser'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

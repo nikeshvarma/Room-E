@@ -1,13 +1,6 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from .models import House
 from rest_framework.generics import ListAPIView
+from .models import House
 from .serializer import HomeSerializer
-
-
-@api_view(['GET'])
-def test_api(request):
-    return Response(data={'message': 'Welcome to Room-E API'})
 
 
 class HomeDetail(ListAPIView):

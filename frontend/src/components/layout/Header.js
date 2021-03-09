@@ -9,10 +9,10 @@ const Header = () => {
 
     return (
         <>
-            <Navbar bg="light" expand="md" variant="light">
+            <Navbar bg="dark" expand="md" variant="dark">
                 <Navbar.Text>
                     <NavLink to="/">
-                        <h2 className="text-dark">ROOME</h2>
+                        <h2 className="text-white">ROOME</h2>
                     </NavLink>
                 </Navbar.Text>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
@@ -22,27 +22,27 @@ const Header = () => {
                         {
                             isAuth ?
                                 <NavDropdown title="Profile" id="basic-nav-dropdown">
-                                    <Link className="dropdown-item" to="/profile">Profile</Link>
-                                    <Link className="dropdown-item" to="/profile/setting">Settings</Link>
+                                    <Link className="dropdown-item text-white" to="/profile">Profile</Link>
+                                    <Link className="dropdown-item text-white" to="/profile/setting">Settings</Link>
                                     <NavDropdown.Divider/>
-                                    <Link className="dropdown-item" to="/logout">Logout</Link>
+                                    <Link className="dropdown-item text-white" to="/logout">Logout</Link>
                                 </NavDropdown>
                                 :
                                 <>
                                     <NavLink to="/login">
-                                        <Navbar.Text className="mx-3 text-dark">
+                                        <Navbar.Text className="mx-3 text-white">
                                             Login
                                         </Navbar.Text>
                                     </NavLink>
                                     <NavLink to="/signup">
-                                        <Navbar.Text className="mx-3 text-dark">
+                                        <Navbar.Text className="mx-3 text-white">
                                             Sign Up
                                         </Navbar.Text>
                                     </NavLink>
                                 </>
                         }
                         <NavLink to="/about">
-                            <Navbar.Text className="mx-3 text-dark">
+                            <Navbar.Text className="mx-3 text-white">
                                 About
                             </Navbar.Text>
                         </NavLink>

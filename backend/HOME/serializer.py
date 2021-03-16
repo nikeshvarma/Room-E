@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from AUTH.serializer import AuthUserSerializer
-from .models import House
+from AUTH.serializer import SignupSerializer
+from .models import Flat
 
 
 class HomeSerializer(serializers.ModelSerializer):
     class Meta:
-        model = House
-        fields = ['id', 'home_price', 'home_address']
+        model = Flat
+        fields = '__all__'
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        response['owner_email'] = AuthUserSerializer(instance.home_owner).data['email']
+        response['owner_email'] = SignupSerializer(instance.flat_owner).data['email']
         return response

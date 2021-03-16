@@ -1,9 +1,7 @@
 from django.contrib import admin
-
-# Register your models here.
-from .models import House
+from .models import Flat
 
 
-@admin.register(House)
-class AdminHouse(admin.ModelAdmin):
+@admin.register(Flat)
+class Flat(admin.ModelAdmin):
     pass

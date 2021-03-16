@@ -29,19 +29,19 @@ const Header = () => {
                                 </NavDropdown>
                                 :
                                 <>
-                                    <NavLink to="/login">
+                                    <NavLink to="/login/">
                                         <Navbar.Text className="mx-3 text-white">
                                             Login
                                         </Navbar.Text>
                                     </NavLink>
-                                    <NavLink to="/signup">
+                                    <NavLink to="/signup/">
                                         <Navbar.Text className="mx-3 text-white">
                                             Sign Up
                                         </Navbar.Text>
                                     </NavLink>
                                 </>
                         }
-                        <NavLink to="/about">
+                        <NavLink to="/about/">
                             <Navbar.Text className="mx-3 text-white">
                                 About
                             </Navbar.Text>

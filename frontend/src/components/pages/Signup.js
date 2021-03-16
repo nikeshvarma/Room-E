@@ -19,19 +19,27 @@ const Signup = () => {
                             <h3>Create New Account</h3>
                         </Card.Title>
 
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <input className="form-control my-3" type="email" name="email" placeholder="Email"
-                                   ref={register({required: "This field is required"})}/>
+                        <form className="container" onSubmit={handleSubmit(onSubmit)}>
+                            <div className="row">
+                                <input className="form-control my-2 col-md-6" type="text" name="first_name" placeholder="First Name"
+                                       ref={register({required: 'This field is required'})}/>
 
-                            <input className="form-control my-3" type="password" name="password" placeholder="Password"
-                                   ref={register({required: true})}/>
+                                <input className="form-control my-2 col-md-6" type="text" name="last_name" placeholder="Last Name"
+                                       ref={register({required: 'This field is required'})}/>
 
-                            <input className="form-control my-3" type="password" name="confirm_password"
-                                   placeholder="Confirm Password"
-                                   ref={register({required: true})}/>
+                                <input className="form-control my-2" type="email" name="email" placeholder="Email"
+                                       ref={register({required: "This field is required"})}/>
 
-                            <div className="d-flex justify-content-center mt-4">
-                                <button type="submit" className="btn btn-primary">Create New Account</button>
+                                <input className="form-control my-2" type="password" name="password" placeholder="Password"
+                                       ref={register({required: true})}/>
+
+                                <input className="form-control my-2" type="password" name="confirm_password"
+                                       placeholder="Confirm Password"
+                                       ref={register({required: true})}/>
+
+                                <div className="mx-auto mt-4">
+                                    <button type="submit" className="btn btn-primary">Create New Account</button>
+                                </div>
                             </div>
                         </form>
 

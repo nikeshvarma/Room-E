@@ -9,7 +9,7 @@ User = get_user_model()
 class SignupSerializer(serializers.ModelSerializer):
     class Meta:
         model = AuthUser
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 'password']
+        fields = ['id', 'first_name', 'last_name', 'email', 'phone_number', 'password']
 
     def create(self, validated_data):
         user = User.objects.create(
@@ -22,3 +22,8 @@ class SignupSerializer(serializers.ModelSerializer):
         user.save()
         Token.objects.create(user=user)
         return user
+
+    # def to_representation(self, instance):
+    #     response = super(SignupSerializer, self).to_representation(instance)
+    #     response['AuthToken'] = self.create
+    #     return response

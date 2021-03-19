@@ -1,7 +1,7 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {Navbar, Nav, NavDropdown, Form, FormControl} from "react-bootstrap";
-import {NavLink, Link} from "react-router-dom"
+import {Navbar, Nav, Form, FormControl} from "react-bootstrap";
+import {NavLink} from "react-router-dom"
 
 const Header = () => {
 
@@ -21,12 +21,18 @@ const Header = () => {
                     <Nav className="ml-auto">
                         {
                             isAuth ?
-                                <NavDropdown title="Profile" id="basic-nav-dropdown">
-                                    <Link className="dropdown-item text-white" to="/profile">Profile</Link>
-                                    <Link className="dropdown-item text-white" to="/profile/setting">Settings</Link>
-                                    <NavDropdown.Divider/>
-                                    <Link className="dropdown-item text-white" to="/logout">Logout</Link>
-                                </NavDropdown>
+                                <>
+                                    <NavLink to="/profile/">
+                                        <Navbar.Text className="mx-3 text-white">
+                                            Profile
+                                        </Navbar.Text>
+                                    </NavLink>
+                                    <NavLink to="/logout/">
+                                        <Navbar.Text className="mx-3 text-white">
+                                            Logout
+                                        </Navbar.Text>
+                                    </NavLink>
+                                </>
                                 :
                                 <>
                                     <NavLink to="/login/">

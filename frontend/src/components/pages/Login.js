@@ -1,16 +1,30 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
+import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import "../../style/auth.css";
 import {Card} from "react-bootstrap";
+import axios from "axios";
+import {IS_AUTH} from "../../redux/auth/authTypes";
 
 
 const Login = () => {
 
-    const {register, handleSubmit, errors} = useForm();
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const {register, handleSubmit} = useForm();
+
     const onSubmit = (data) => {
-        console.log(data)
+        axios({
+            url: 'http://localhost:8000/auth/login/',
+            method: 'post',
+            dataType: 'json',
+            data: data,
+        })
+            .then((res) => dispatch({type: IS_AUTH, payload: res.data['AuthToken']}))
+            .then(() => history.push('/'))
+            .catch((err) => console.log(err))
     }
-    // const dispatch = useDispatch();
 
     return (
         <>

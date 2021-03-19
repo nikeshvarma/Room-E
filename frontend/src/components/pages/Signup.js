@@ -1,19 +1,30 @@
 import React from 'react';
+import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 import {Card, Form, Col} from "react-bootstrap";
 import axios from "axios";
+import {IS_AUTH} from "../../redux/auth/authTypes";
 
 const Signup = () => {
 
     const {register, handleSubmit} = useForm();
+    const dispatch = useDispatch();
+
     const onSubmit = (data) => {
-        console.log(data)
-        // axios({
-        //     url: 'http://localhost:8000/auth/signup/',
-        //     method: 'post',
-        //     data: data
-        // })
-        //     .then((res) => console.log(res.data))
+        axios({
+            url: 'http://localhost:8000/auth/signup/',
+            method: 'post',
+            data: {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                password: data.password,
+                phone_number: data.phone_number,
+            }
+        })
+            .then((res) => dispatch({type: IS_AUTH, payload: res.data['AuthToken']}))
+            .then(() => this.props.push('/'))
+            .catch((err) => console.log(err))
     }
 
     return (
@@ -40,6 +51,11 @@ const Signup = () => {
 
                             <Form.Group>
                                 <Form.Control type="email" name="email" placeholder="Email"
+                                              ref={register({required: "This field is required"})}/>
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Control type="tel" maxLength="10" name="phone_number" placeholder="Phone Number"
                                               ref={register({required: "This field is required"})}/>
                             </Form.Group>
 

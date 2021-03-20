@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.spinner-top {
+    margin-top: 300px;
+}
+
+
 .nav-link-style {
     background: #fd7c2a;
     text-decoration: none;

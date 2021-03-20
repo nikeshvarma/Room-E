@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import {IS_AUTH} from "../../redux/auth/authTypes";
 import axios from "axios";
 import {Card, Col, Container, Row} from "react-bootstrap";
+import Loading from "./Loading";
+import {Link} from "react-router-dom";
 
 const Home = () => {
 
@@ -37,19 +39,28 @@ const Home = () => {
                         <img src={flat.photo1} width="100%" className="rounded"/>
                     </Col>
                     <Col md={9}>
-                        <h6>{flat.flat_address}</h6>
+                        <h6>{flat.flat_address} {flat.flat_city} {flat.flat_state}</h6>
                         <div className="d-flex justify-content-between">
                             <div>
-                                {flat.flat_rent}
+                                &#x20B9; {flat.flat_price}
                             </div>
                             <div>
-                                {flat.flat_size}
+                                {flat.flat_size} sq. feet
                             </div>
                             <div>
-                                {flat.flat_rooms}
+                                {flat.flat_rooms} Rooms
                             </div>
                         </div>
                     </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <div className="mr-auto">
+                        <Link to="#" className="btn btn-sm btn-success text-white mx-3">View Phone Number</Link>
+                    </div>
+                    <div className="mr-1">
+                        <Link to="#" className="btn btn-sm text-white btn-primary">Contact Dealer</Link>
+                    </div>
                 </Row>
             </Card.Body>
         </Card>
@@ -59,7 +70,7 @@ const Home = () => {
         <div>
             {loading
                 ?
-                <h1>Loading...</h1>
+                <Loading/>
                 :
                 <>
                     <div className="container mt-3">

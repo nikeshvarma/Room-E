@@ -7,6 +7,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
 import isAuthReducer from "./redux/auth/authReducer";
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
 const store = createStore(combineReducers({

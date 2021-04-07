@@ -42,11 +42,10 @@
     .head-txt {
         position: relative;
         left: 0;
-        margin-left: 25px   ;
+        margin-left: 25px;
         top: 100px;
         color: #ffffff;
         font-family: 'Open Sans', sans-serif;
         font-weight: 600;
     }
 }
-

@@ -10,5 +10,6 @@ class HomeSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        response['owner_email'] = SignupSerializer(instance.flat_owner).data['email']
+        response['owner_first_name'] = SignupSerializer(instance.flat_owner).data['first_name']
+        response['owner_last_name'] = SignupSerializer(instance.flat_owner).data['last_name']
         return response

@@ -9,11 +9,13 @@ class Flat(models.Model):
     flat_price = models.PositiveIntegerField()
     flat_size = models.PositiveIntegerField()
     flat_rooms = models.PositiveIntegerField()
-    flat_for = models.CharField(max_length=2)
+    flat_for = models.CharField(max_length=10)
+    flat_locality = models.CharField(max_length=200)
     flat_address = models.CharField(max_length=200)
     flat_pincode = models.CharField(max_length=6)
     flat_city = models.CharField(max_length=100)
     flat_state = models.CharField(max_length=100)
+    flat_description = models.TextField()
     is_verified_flat = models.BooleanField(default=False)
 
     # Images

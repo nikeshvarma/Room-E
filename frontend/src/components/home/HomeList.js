@@ -3,9 +3,10 @@ import {useDispatch} from "react-redux";
 import Cookies from "js-cookie";
 import {IS_AUTH} from "../../redux/auth/authTypes";
 import axios from "axios";
-import {Button, Card, Col, Row} from "react-bootstrap";
+import {Card, Col, Row} from "react-bootstrap";
 import Loading from "../layout/Loading";
 import {Link} from "react-router-dom";
+import Truncate from 'react-truncate';
 
 const HomeList = (props) => {
 
@@ -37,32 +38,43 @@ const HomeList = (props) => {
         <Card key={index} className="mb-4">
             <Card.Body>
                 <Row>
-                    <Col md={3}>
-                        <img src={flat.photo1} width="100%" className="rounded"/>
+                    <Col md={5}>
+                        <img src={flat.photo1} width="100%" style={{maxHeight: 230}} className="rounded" alt={flat.id}/>
                     </Col>
-                    <Col md={9}>
-                        <h6>{flat.flat_address} {flat.flat_city} {flat.flat_state}</h6>
-                        <div className="d-flex justify-content-between">
+                    <Col md={7}>
+                        <p style={{fontSize: 16}}>{flat.flat_rooms} BHK Flat for {flat.flat_for} in {flat.flat_locality}</p>
+                        <div className="d-flex flex-wrap justify-content-between my-1">
                             <div>
-                                &#x20B9; {flat.flat_price}
+                                <h5>&#x20B9; {flat.flat_price}<span className="small text-muted">/month</span></h5>
                             </div>
                             <div>
-                                {flat.flat_size} sq. feet
+                                <h5>{flat.flat_size} <span className="small text-muted">feet<sup>2</sup></span></h5>
                             </div>
                             <div>
-                                {flat.flat_rooms} Rooms
+                                <h5>{flat.flat_rooms} BHK</h5>
+                            </div>
+                        </div>
+
+                        <div className="my-2">
+                            <Truncate lines={2} className="text-muted">
+                                {flat.flat_description}
+                            </Truncate>
+                        </div>
+
+                        <hr/>
+
+                        <div className="d-flex flex-wrap mt-2 align-items-center justify-content-center justify-content-md-between">
+                            <div className="my-2">
+                                <h6>Posted By: {flat.owner_first_name} {flat.owner_last_name}</h6>
+                            </div>
+                            <div className="">
+                                <button className="btn btn-success">Phone Number</button>
+                            </div>
+                            <div className="">
+                                <button className="btn btn-primary">View &#8594;</button>
                             </div>
                         </div>
                     </Col>
-                </Row>
-                <hr/>
-                <Row>
-                    <div className="mr-auto">
-                        <Link to="#" className="btn btn-sm btn-success text-white mx-3">View Phone Number</Link>
-                    </div>
-                    <div className="mr-1">
-                        <Link to="#" className="btn btn-sm text-white btn-primary">Contact Dealer</Link>
-                    </div>
                 </Row>
             </Card.Body>
         </Card>

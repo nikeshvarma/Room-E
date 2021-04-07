@@ -9,7 +9,7 @@ import {IS_AUTH} from "../../redux/auth/authTypes";
 
 
 const Login = () => {
-
+    //Check Token is get or undefined for login.
     const dispatch = useDispatch();
     const history = useHistory();
     const {register, handleSubmit} = useForm();

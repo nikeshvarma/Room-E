@@ -9,7 +9,7 @@ import {Provider} from "react-redux";
 import isAuthReducer from "./redux/auth/authReducer";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://192.168.43.167:8000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 

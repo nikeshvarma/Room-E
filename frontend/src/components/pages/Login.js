@@ -42,7 +42,7 @@ const Login = () => {
                             <input className="form-control my-3" type="password" name="password" placeholder="Password"
                                    ref={register({required: true})}/>
                             <div className="d-flex justify-content-center mt-4">
-                                <button type="submit" className="btn btn-success">Login</button>
+                                <button type="submit" className="btn btn-success">LOGIN</button>
                             </div>
 
                         </form>

@@ -1,5 +1,5 @@
 import React from 'react';
-import spinner from "../../images/Misterious mist.gif"
+import spinner from "../../images/loader.gif";
 
 function Loading() {
     return (

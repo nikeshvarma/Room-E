@@ -53,11 +53,6 @@ const Header = () => {
                             </Navbar.Text>
                         </NavLink>
                     </Nav>
-
-                    <Form inline className="ml-0 ml-md-3 my-2 my-md-0">
-                        <FormControl type="text" placeholder="Search" className="mr-sm-2"/>
-                    </Form>
-
                 </Navbar.Collapse>
             </Navbar>
         </>

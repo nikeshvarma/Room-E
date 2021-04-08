@@ -35,7 +35,7 @@ const HomeList = (props) => {
     }, [])
 
     let flatRender = flats.map((flat, index) =>
-        <Card key={index} className="mb-4">
+        <Card key={index} className="mb-4 shadow">
             <Card.Body>
                 <Row>
                     <Col md={5}>
@@ -63,7 +63,7 @@ const HomeList = (props) => {
 
                         <hr/>
 
-                        <div className="d-flex flex-wrap mt-2 align-items-center justify-content-center justify-content-md-between">
+                        <div className="d-flex flex-wrap mt-2 align-items-center justify-content-between">
                             <div className="my-2">
                                 <h6>Posted By: {flat.owner_first_name} {flat.owner_last_name}</h6>
                             </div>

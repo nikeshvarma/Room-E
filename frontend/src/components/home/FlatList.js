@@ -88,7 +88,7 @@ const FlatList = (props) => {
     )
 
     let sidebar = (
-        <div className="w-100 sticky-top">
+        <div className="w-100 sticky-top mb-3">
             <Card>
                 <form onSubmit={handleSubmit(filterFormSubmit)} method="POST">
                     <Card.Body>

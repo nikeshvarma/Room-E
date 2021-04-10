@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import {BrowserRouter} from "react-router-dom";
 import './style/index.css';
 import App from './App';
@@ -8,6 +9,7 @@ import {createStore, combineReducers} from "redux";
 import {Provider} from "react-redux";
 import isAuthReducer from "./redux/auth/authReducer";
 import axios from 'axios';
+
 
 axios.defaults.baseURL = 'http://192.168.43.167:8000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -31,3 +33,4 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
+serviceWorkerRegistration.unregister();

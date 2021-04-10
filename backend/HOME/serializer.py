@@ -3,7 +3,7 @@ from AUTH.serializer import SignupSerializer
 from .models import Flat
 
 
-class HomeSerializer(serializers.ModelSerializer):
+class AllFlatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flat
         fields = '__all__'

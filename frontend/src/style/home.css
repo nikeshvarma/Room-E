@@ -9,6 +9,11 @@
     height: 400px;
 }
 
+.img-box {
+    height: 320px;
+    overflow: hidden;
+}
+
 .head-txt {
     position: absolute;
     left: 450px;
@@ -48,4 +53,10 @@
         font-family: 'Open Sans', sans-serif;
         font-weight: 600;
     }
+
+    .img-box {
+        height: 200px;
+        overflow: hidden;
+    }
 }
+

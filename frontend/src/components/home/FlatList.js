@@ -7,15 +7,20 @@ import {Card, Col, Row} from "react-bootstrap";
 import Loading from "../layout/Loading";
 import {Link} from "react-router-dom";
 import Truncate from 'react-truncate';
+import {useForm} from "react-hook-form";
 
 const FlatList = (props) => {
 
     const [flats, setFlats] = useState([]);
     const [loading, setLoading] = useState(true);
     const query = props.location?.state?.query;
-
+    const {register, handleSubmit} = useForm();
     const dispatch = useDispatch();
     const authToken = Cookies.get('auth_token');
+
+    const filterFormSubmit = data => {
+        console.log(data);
+    }
 
     useEffect(() => {
         if (authToken) {
@@ -85,75 +90,95 @@ const FlatList = (props) => {
     let sidebar = (
         <div className="w-100 sticky-top">
             <Card>
-                <Card.Body>
-                    <div>
-                        <h5 className="font-weight-bolder">Location</h5>
-                        <div className="d-flex justify-content-center">
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="City"
-                                value={query}
-                            />
+                <form onSubmit={handleSubmit(filterFormSubmit)} method="POST">
+                    <Card.Body>
+                        <div className="d-flex justify-content-between mb-4">
+                            <button type="reset" className="btn btn-warning w-50 mr-4">Reset</button>
+                            <button type="submit" className="btn btn-primary w-50 ml-4">Apply</button>
                         </div>
-                    </div>
 
-                    <hr/>
-
-                    <div className="mt-4">
-                        <h5 className="font-weight-bold">Budget</h5>
-                        <div className="d-flex justify-content-between my-3">
-                            <input
-                                type="tel"
-                                name="min_budget"
-                                className="form-control"
-                                placeholder="Min Budget"
-                                style={{width: 110}}
-                            />
-                            <input
-                                type="tel"
-                                name="max_budget"
-                                className="form-control"
-                                placeholder="Max Budget"
-                                style={{width: 110}}
-                            />
+                        <div>
+                            <h5 className="font-weight-bolder">Location</h5>
+                            <div className="d-flex justify-content-center">
+                                <input
+                                    ref={register}
+                                    name="location"
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="City"
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <hr/>
+                        <hr/>
 
-                    <div className="mt-4">
-                        <h5 className="font-weight-bold">Flat Types</h5>
-                        <div className="d-flex flex-wrap justify-content-around my-3">
-                            <button type="button" className="btn btn-secondary" style={{borderRadius: 20}}>1 BHK</button>
-                            <button type="button" className="btn btn-secondary" style={{borderRadius: 20}}>2 BHK</button>
-                            <button type="button" className="btn btn-secondary" style={{borderRadius: 20}}>3 BHK</button>
+                        <div className="mt-4">
+                            <h5 className="font-weight-bold">Budget</h5>
+                            <div className="d-flex justify-content-between my-3">
+                                <input
+                                    ref={register}
+                                    type="tel"
+                                    name="min_budget"
+                                    className="form-control"
+                                    placeholder="Min Budget"
+                                    style={{width: 110}}
+                                />
+                                <input
+                                    ref={register}
+                                    type="tel"
+                                    name="max_budget"
+                                    className="form-control"
+                                    placeholder="Max Budget"
+                                    style={{width: 110}}
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    <hr/>
+                        <hr/>
 
-                    <div className="mt-4">
-                        <h5 className="font-weight-bold">Area</h5>
-                        <div className="d-flex justify-content-between my-3">
-                            <input
-                                type="tel"
-                                name="min_area"
-                                className="form-control"
-                                placeholder="Min Area"
-                                style={{width: 110}}
-                            />
-                            <input
-                                type="tel"
-                                name="max_area"
-                                className="form-control"
-                                placeholder="Max Area"
-                                style={{width: 110}}
-                            />
+                        <div className="mt-4">
+                            <h5 className="font-weight-bold">Flat Types</h5>
+                            <div className="d-flex flex-wrap justify-content-between my-3 align-items-baseline">
+                                <div>
+                                    <input id="1bhk" ref={register} type="checkbox" name="1bhk"/>
+                                    <label className="ml-2" htmlFor="1bhk">1 BHK</label>
+                                </div>
+                                <div>
+                                    <input id="2bhk" ref={register} type="checkbox" name="2bhk"/>
+                                    <label className="ml-2" htmlFor="2bhk">2 BHK</label>
+                                </div>
+                                <div>
+                                    <input id="3bhk" ref={register} type="checkbox" name="3bhk"/>
+                                    <label className="ml-2" htmlFor="3bhk">3 BHK</label>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                </Card.Body>
+                        <hr/>
+
+                        <div className="mt-4">
+                            <h5 className="font-weight-bold">Area</h5>
+                            <div className="d-flex justify-content-between my-3">
+                                <input
+                                    ref={register}
+                                    type="tel"
+                                    name="min_area"
+                                    className="form-control"
+                                    placeholder="Min Area"
+                                    style={{width: 110}}
+                                />
+                                <input
+                                    ref={register}
+                                    type="tel"
+                                    name="max_area"
+                                    className="form-control"
+                                    placeholder="Max Area"
+                                    style={{width: 110}}
+                                />
+                            </div>
+                        </div>
+                    </Card.Body>
+                </form>
             </Card>
         </div>
     )

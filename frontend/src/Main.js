@@ -3,7 +3,7 @@ import {Route, Switch} from "react-router-dom";
 import About from "./components/home/About";
 import Home from "./components/home/Home";
 import FlatList from "./components/home/FlatList";
-import Notfound from "./components/home/Notfound";
+import Notfound from "./components/layout/Notfound";
 import Header from "./components/layout/Header";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";

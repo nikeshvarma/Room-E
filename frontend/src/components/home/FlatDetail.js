@@ -1,38 +1,52 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Loading from "../layout/Loading";
-import {Col, Row} from "react-bootstrap";
+import {Carousel, Col, Row} from "react-bootstrap";
 
 const FlatDetail = (props) => {
 
     const [loading, setLoading] = useState(false);
-    const [flat, setFlat] = useState([]);
+    const [property, setProperty] = useState([]);
     const propertyId = props.match?.params?.flatId;
 
     useEffect(() => {
         async function fetchFlat() {
             const flat = await axios.get('flat/detail/', {params: {flat_id: propertyId}});
-            setFlat(flat?.data);
+            setProperty([flat?.data]);
             setLoading(false);
-            console.log(flat.data);
         }
 
         fetchFlat();
-    }, [])
 
-    const {id, rent, images, rooms} = flat;
+    }, []);
 
-    const flatDisplay =
-        <>
+
+    let flatDisplay = property.map((flat, index) =>
+        <div key={index}>
             <Row>
                 <Col md={6}>
+                    <div className="img-responsive img-box">
+                        <Carousel>
+                            {flat.images.map((image, index) =>
+                                <Carousel.Item>
+                                    <img
+                                        className="d-block w-100"
+                                        src={image.image}
+                                        alt={index}
+                                    />
+                                </Carousel.Item>
+                            )}
+                        </Carousel>
+                    </div>
+                </Col>
+
+                <Col md={6}>
 
                 </Col>
-                <Col md={6}>
-                    <h4>Rent {rent}<span className="small text-secondary">/month</span></h4>
-                </Col>
             </Row>
-        </>
+        </div>
+    )
+
 
     return (
         <div>
@@ -41,7 +55,7 @@ const FlatDetail = (props) => {
                 <Loading/>
                 :
                 <>
-                    <div className="container-fluid mt-3">
+                    <div className="container mt-3">
                         {flatDisplay}
                     </div>
                 </>

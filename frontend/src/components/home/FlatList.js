@@ -8,7 +8,7 @@ import Loading from "../layout/Loading";
 import {Link} from "react-router-dom";
 import Truncate from 'react-truncate';
 
-const HomeList = (props) => {
+const FlatList = (props) => {
 
     const [flats, setFlats] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ const HomeList = (props) => {
         console.log(query)
 
         async function fetchFlats() {
-            const res = await axios.get('/flats/all/')
+            const res = await axios.get('/flat/all/')
             setFlats(res?.data)
             setLoading(false);
         }
@@ -39,25 +39,25 @@ const HomeList = (props) => {
             <Card.Body>
                 <Row>
                     <Col md={5}>
-                        <img src={flat.photo1} width="100%" style={{maxHeight: 230}} className="rounded" alt={flat.id}/>
+                        <img src={flat.image} width="100%" style={{maxHeight: 230}} className="rounded" alt={flat.id}/>
                     </Col>
                     <Col md={7}>
-                        <p style={{fontSize: 16}}>{flat.flat_rooms} BHK Flat for {flat.flat_for} in {flat.flat_locality}</p>
+                        <p style={{fontSize: 16}}>{flat.rooms} BHK Flat for {flat.available_for} in {flat.locality}</p>
                         <div className="d-flex flex-wrap justify-content-between my-1">
                             <div>
-                                <h5>&#x20B9; {flat.flat_price}<span className="small text-muted">/month</span></h5>
+                                <h5>&#x20B9; {flat.rent}<span className="small text-muted">/month</span></h5>
                             </div>
                             <div>
-                                <h5>{flat.flat_size} <span className="small text-muted">feet<sup>2</sup></span></h5>
+                                <h5>{flat.size} <span className="small text-muted">feet<sup>2</sup></span></h5>
                             </div>
                             <div>
-                                <h5>{flat.flat_rooms} BHK</h5>
+                                <h5>{flat.rooms} BHK</h5>
                             </div>
                         </div>
 
                         <div className="my-2">
                             <Truncate lines={2} className="text-muted">
-                                {flat.flat_description}
+                                {flat.description}
                             </Truncate>
                         </div>
 
@@ -65,13 +65,15 @@ const HomeList = (props) => {
 
                         <div className="d-flex flex-wrap mt-2 align-items-center justify-content-between">
                             <div className="my-2">
-                                <h6>Posted By: {flat.owner_first_name} {flat.owner_last_name}</h6>
+                                <h6>Posted By: {flat.name}</h6>
                             </div>
                             <div className="">
                                 <button className="btn btn-success">Phone Number</button>
                             </div>
                             <div className="">
-                                <button className="btn btn-primary">View &#8594;</button>
+                                <Link to={`/view/property/${flat.id}/`}>
+                                    <button className="btn btn-primary">View &#8594;</button>
+                                </Link>
                             </div>
                         </div>
                     </Col>
@@ -179,4 +181,4 @@ const HomeList = (props) => {
     );
 };
 
-export default HomeList;
+export default FlatList;

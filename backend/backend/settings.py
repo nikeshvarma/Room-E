@@ -26,6 +26,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# Domain Name
+DOMAIN_NAME = "http://localhost:8000"
+
 # Application definition
 
 INSTALLED_APPS = [

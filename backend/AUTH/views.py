@@ -31,6 +31,7 @@ class LoginView(APIView):
         user = authenticate(email=email, password=password)
         if user is not None:
             context = {'AuthToken': str(Token.objects.get(user=user))}
+            return Response(data=context, status=status.HTTP_200_OK)
         else:
             context = {'message': 'invalid credentials'}
-        return Response(data=context, status=status.HTTP_200_OK)
+            return Response(data=context, status=status.HTTP_401_UNAUTHORIZED)

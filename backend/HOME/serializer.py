@@ -26,6 +26,7 @@ class AllFlatSerializer(serializers.ModelSerializer):
         response = super().to_representation(instance)
         response['image'] = settings.DOMAIN_NAME + str(image.image.url)
         response['name'] = SignupSerializer(instance.owner).data['first_name'] + ' ' + SignupSerializer(instance.owner).data['last_name']
+        response['contact_number'] = SignupSerializer(instance.owner).data['phone_number']
         return response
 
 

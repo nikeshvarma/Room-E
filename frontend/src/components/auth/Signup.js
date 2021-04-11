@@ -4,11 +4,13 @@ import {useForm} from "react-hook-form";
 import {Card, Form, Col} from "react-bootstrap";
 import axios from "axios";
 import {IS_AUTH} from "../../redux/auth/authTypes";
+import {useHistory} from "react-router-dom";
 
 const Signup = () => {
 
     const {register, handleSubmit} = useForm();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const onSubmit = (data) => {
         axios({
@@ -23,7 +25,7 @@ const Signup = () => {
             }
         })
             .then((res) => dispatch({type: IS_AUTH, payload: res.data['AuthToken']}))
-            .then(() => this.props.push('/'))
+            .then(() => history.push('/'))
             .catch((err) => console.log(err))
     }
 
@@ -41,33 +43,39 @@ const Signup = () => {
                             <Form.Row>
                                 <Form.Group as={Col}>
                                     <Form.Control type="text" name="first_name" placeholder="First Name"
-                                                  ref={register({required: 'This field is required'})}/>
+                                                  ref={register({required: 'This field is required'})}
+                                    />
                                 </Form.Group>
                                 <Form.Group as={Col}>
                                     <Form.Control type="text" name="last_name" placeholder="Last Name"
-                                                  ref={register({required: 'This field is required'})}/>
+                                                  ref={register({required: 'This field is required'})}
+                                    />
                                 </Form.Group>
                             </Form.Row>
 
                             <Form.Group>
                                 <Form.Control type="email" name="email" placeholder="Email"
-                                              ref={register({required: "This field is required"})}/>
+                                              ref={register({required: "This field is required"})}
+                                />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Control type="tel" maxLength="10" name="phone_number" placeholder="Phone Number"
-                                              ref={register({required: "This field is required"})}/>
+                                              ref={register({required: "This field is required"})}
+                                />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Control type="password" name="password" placeholder="Password"
-                                              ref={register({required: true})}/>
+                                              ref={register({required: true})}
+                                />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Control className="form-control" type="password" name="confirm_password"
                                               placeholder="Confirm Password"
-                                              ref={register({required: true})}/>
+                                              ref={register({required: true})}
+                                />
                             </Form.Group>
 
                             <div className="d-flex justify-content-center">

@@ -28,7 +28,7 @@ const FlatDetail = (props) => {
                     <div className="img-responsive img-box">
                         <Carousel>
                             {flat.images.map((image, index) =>
-                                <Carousel.Item>
+                                <Carousel.Item key={index}>
                                     <img
                                         className="d-block w-100"
                                         src={image.image}

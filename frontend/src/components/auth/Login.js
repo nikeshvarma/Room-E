@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import "../../style/auth.css";
-import {Card} from "react-bootstrap";
+import {Alert, Card} from "react-bootstrap";
 import axios from "axios";
 import {IS_AUTH} from "../../redux/auth/authTypes";
 
 
 const Login = () => {
-    //Check Token is get or undefined for login.
     const dispatch = useDispatch();
+    const [show, setShow] = useState(false);
     const history = useHistory();
     const {register, handleSubmit} = useForm();
 
@@ -21,13 +21,19 @@ const Login = () => {
             dataType: 'json',
             data: data,
         })
-            .then((res) => dispatch({type: IS_AUTH, payload: res.data['AuthToken']}))
+            .then((res) => res.data['AuthToken'] ? dispatch({type: IS_AUTH, payload: res.data['AuthToken']}) : console.log(res.errors))
             .then(() => history.push('/'))
-            .catch((err) => console.log(err))
+            .catch(() => setShow(true))
     }
 
     return (
         <>
+            <div>
+                <Alert variant="danger" show={show}>
+                    Invalid username or password.
+                </Alert>
+            </div>
+
             <div className="d-flex justify-content-center login-form">
                 <Card className="auth-form-width">
                     <Card.Body className="shadow">

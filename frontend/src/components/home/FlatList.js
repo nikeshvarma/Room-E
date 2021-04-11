@@ -39,6 +39,7 @@ const FlatList = (props) => {
 
     }, [])
 
+
     let flatRender = flats.map((flat, index) =>
         <Card key={index} className="mb-4 shadow">
             <Card.Body>
@@ -72,12 +73,24 @@ const FlatList = (props) => {
                             <div className="my-2">
                                 <h6>Posted By: {flat.name}</h6>
                             </div>
-                            <div className="">
-                                <button className="btn btn-success">Phone Number</button>
+                            <div>
+                                {
+                                    authToken
+                                        ?
+                                        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+                                        <a href={`tel: ${flat.contact_number}`} className="btn btn-info">
+                                            {flat.contact_number}
+                                        </a>
+                                        :
+                                        <Link to="/signup/">
+                                            <button className="btn btn-success">Phone Number</button>
+                                        </Link>
+                                }
+
                             </div>
-                            <div className="">
+                            <div>
                                 <Link to={`/view/property/${flat.id}/`}>
-                                    <button className="btn btn-primary">View &#8594;</button>
+                                    <button className="btn btn-success">View &#8594;</button>
                                 </Link>
                             </div>
                         </div>

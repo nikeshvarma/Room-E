@@ -12,6 +12,8 @@
 .img-box {
     height: 400px;
     overflow: hidden;
+    padding: 5px;
+    border: 2px solid #fafafa;
 }
 
 .head-txt {

@@ -23,6 +23,8 @@ const FlatList = (props) => {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+
         if (authToken) {
             dispatch({type: IS_AUTH, payload: authToken})
         }

@@ -10,9 +10,9 @@ class Flat(admin.ModelAdmin):
 
 @admin.register(FlatImages)
 class FlatImages(admin.ModelAdmin):
-    pass
+    list_display = ['flat', 'image']
 
 
 @admin.register(FlatAmenities)
 class FlatAmenities(admin.ModelAdmin):
-    list_display = ['flat']
+    list_display = ['flat', 'celling_fan', 'air_conditioner', 'bed', 'sofa', 'water_purifier', 'geyser', 'parking']

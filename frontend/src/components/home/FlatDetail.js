@@ -11,6 +11,8 @@ const FlatDetail = (props) => {
     const propertyId = props.match?.params?.flatId;
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+
         async function fetchFlat() {
             const flat = await axios.get('flat/detail/', {params: {flat_id: propertyId}});
             setProperty([flat?.data]);
@@ -25,13 +27,13 @@ const FlatDetail = (props) => {
     let flatDisplay = property.map((flat, index) =>
         <div key={index}>
             <Row className="no-gutters">
-                <Col md={8}>
+                <Col lg={8}>
                     <div className="img-responsive img-box">
                         <Carousel>
                             {flat.images.map((image, index) =>
                                 <Carousel.Item key={index}>
                                     <img
-                                        className="d-block w-100"
+                                        className="d-block w-100 my-auto"
                                         src={image.image}
                                         alt={index}
                                     />
@@ -41,8 +43,8 @@ const FlatDetail = (props) => {
                     </div>
                 </Col>
 
-                <Col md={4}>
-                    <div className="shadow p-3">
+                <Col lg={4}>
+                    <div className="p-2 mt-0 mt-lg-3">
                         <table className="text-center w-100 table-bordered" cellPadding="5px">
                             <tbody>
                             <tr>
@@ -67,11 +69,11 @@ const FlatDetail = (props) => {
                             </tr>
                             <tr>
                                 <td>
-                                    <h6 className="text-secondary mt-2"><FontAwesomeIcon icon="file-contract" color="#FFE000"/> Posted On</h6>
+                                    <h6 className="text-secondary mt-2"><FontAwesomeIcon icon="calendar-check" color="#9589b0"/> Posted On</h6>
                                     <p className="mb-0">{flat.post_datetime}</p>
                                 </td>
                                 <td>
-                                    <h6 className="text-secondary mt-2"><FontAwesomeIcon icon="user" color="#C1FB83"/> Owner</h6>
+                                    <h6 className="text-secondary mt-2"><FontAwesomeIcon icon="user" color="#5a9177"/> Owner</h6>
                                     <p className="mb-0">{flat.owner}</p>
                                 </td>
                             </tr>
@@ -90,6 +92,78 @@ const FlatDetail = (props) => {
                     </div>
                 </Col>
             </Row>
+
+            <Row className="my-2">
+                <Col sm={12}>
+                    <h5>Property Description</h5>
+                    <p className="text-muted">{flat.description}</p>
+                </Col>
+            </Row>
+
+            <Row className="my-2">
+                <Col sm={12}>
+                    <h5>Amenities</h5>
+                    <div className="d-flex flex-wrap justify-content-around align-items-center mt-3 text-center">
+                        {
+                            Object.entries(flat.amenities).map((item) => {
+
+                                if (item[0] === 'celling_fan' && item[1]) {
+                                    return (
+                                        <div className="mx-4 my-3 my-lg-0">
+                                            <FontAwesomeIcon icon="fan" color="#A9A9A9" size="2x"/>
+                                            <h6 className="mt-2">Fan</h6>
+                                        </div>
+                                    )
+                                } else if (item[0] === 'bed' && item[1]) {
+                                    return (
+                                        <div className="mx-4 my-3 my-lg-0">
+                                            <FontAwesomeIcon icon="bed" color="#A9A9A9" size="2x"/>
+                                            <h6 className="mt-2">Bed</h6>
+                                        </div>
+                                    )
+                                } else if (item[0] === 'sofa' && item[1]) {
+                                    return (
+                                        <div className="mx-4 my-3 my-lg-0">
+                                            <FontAwesomeIcon icon="couch" color="#A9A9A9" size="2x"/>
+                                            <h6 className="mt-2">Sofa</h6>
+                                        </div>
+                                    )
+                                } else if (item[0] === 'air_conditioner' && item[1]) {
+                                    return (
+                                        <div className="mx-4 my-3 my-lg-0">
+                                            <FontAwesomeIcon icon="wind" color="#A9A9A9" size="2x"/>
+                                            <h6 className="mt-2">AC</h6>
+                                        </div>
+                                    )
+                                } else if (item[0] === 'water_purifier' && item[1]) {
+                                    return (
+                                        <div className="mx-4 my-3 my-lg-0">
+                                            <FontAwesomeIcon icon="filter" color="#A9A9A9" size="2x"/>
+                                            <h6 className="mt-2">Purifier</h6>
+                                        </div>
+                                    )
+                                } else if (item[0] === 'geyser' && item[1]) {
+                                    return (
+                                        <div className="mx-4 my-3 my-lg-0">
+                                            <FontAwesomeIcon icon="hot-tub" color="#A9A9A9" size="2x"/>
+                                            <h6 className="mt-2">Geyser</h6>
+                                        </div>
+                                    )
+                                } else if (item[0] === 'parking' && item[1]) {
+                                    return (
+                                        <div className="mx-4 my-3 my-lg-0">
+                                            <FontAwesomeIcon icon="car-alt" color="#A9A9A9" size="2x"/>
+                                            <h6 className="mt-2">Parking</h6>
+                                        </div>
+                                    )
+                                } else {
+                                    return "";
+                                }
+                            })
+                        }
+                    </div>
+                </Col>
+            </Row>
         </div>
     )
 
@@ -101,7 +175,7 @@ const FlatDetail = (props) => {
                 <Loading/>
                 :
                 <>
-                    <div className="container mt-3">
+                    <div className="container-lg mt-1">
                         {flatDisplay}
                     </div>
                 </>

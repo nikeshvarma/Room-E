@@ -1,10 +1,10 @@
 import React from 'react';
-import spinner from "../../images/loader.gif";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Loading() {
     return (
         <div className="d-flex justify-content-center spinner-top">
-            <img src={spinner} alt="spinner-img" width="70px"/>
+            <CircularProgress size={60} thickness={2}/>
         </div>
     );
 }

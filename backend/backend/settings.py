@@ -61,8 +61,13 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+# REST FRAMEWORK SETTINGS
+
 REST_FRAMEWORK = {
-    'DATETIME_FORMAT': '%d-%B-%Y'
+    'DATETIME_FORMAT': '%d-%B-%Y',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
 
 # CORS_ALLOWED_ORIGINS = [

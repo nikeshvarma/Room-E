@@ -23,12 +23,12 @@ const Header = () => {
                             isAuth ?
                                 <>
                                     <NavLink to="/profile/">
-                                        <Navbar.Text className="mx-3 text-white">
+                                        <Navbar.Text className="px-3 text-white header-link">
                                             Profile
                                         </Navbar.Text>
                                     </NavLink>
                                     <NavLink to="/logout/">
-                                        <Navbar.Text className="mx-3 text-white">
+                                        <Navbar.Text className="px-3 text-white header-link">
                                             Logout
                                         </Navbar.Text>
                                     </NavLink>
@@ -36,19 +36,19 @@ const Header = () => {
                                 :
                                 <>
                                     <NavLink to="/login/">
-                                        <Navbar.Text className="mx-3 text-white">
+                                        <Navbar.Text className="px-3 text-white header-link">
                                             Login
                                         </Navbar.Text>
                                     </NavLink>
                                     <NavLink to="/signup/">
-                                        <Navbar.Text className="mx-3 text-white">
+                                        <Navbar.Text className="px-3 text-white header-link">
                                             Sign Up
                                         </Navbar.Text>
                                     </NavLink>
                                 </>
                         }
                         <NavLink to="/about/">
-                            <Navbar.Text className="mx-3 text-white">
+                            <Navbar.Text className="px-3 text-white header-link">
                                 About
                             </Navbar.Text>
                         </NavLink>

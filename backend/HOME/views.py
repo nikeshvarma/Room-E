@@ -4,7 +4,6 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
 from .models import Flat
 from .serializer import AllFlatSerializer, FlatDetailSerializer
 
@@ -44,3 +43,8 @@ class FlatContactDetailsView(APIView):
             'phone_number': user.phone_number
         }
         return Response(data=data, status=status.HTTP_200_OK)
+
+
+class FilterSearch(ListAPIView):
+    queryset = Flat.objects.all()
+    serializer_class = FlatDetailSerializer

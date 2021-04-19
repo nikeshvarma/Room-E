@@ -19,7 +19,10 @@ const FlatList = (props) => {
     const authToken = Cookies.get('auth_token');
 
     const filterFormSubmit = data => {
-        console.log(data);
+        axios.get('/flat/search/', {params: data})
+            .then((res) => setFlats(res.data))
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
     }
 
     useEffect(() => {

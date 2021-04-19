@@ -46,5 +46,9 @@ class FlatContactDetailsView(APIView):
 
 
 class FilterSearch(ListAPIView):
-    queryset = Flat.objects.all()
-    serializer_class = FlatDetailSerializer
+    serializer_class = AllFlatSerializer
+
+    def get_queryset(self):
+        params = dict(self.request.query_params)
+        print(params)
+        return Flat.objects.all()

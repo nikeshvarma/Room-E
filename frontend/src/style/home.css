@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap');
 
 .home-img {
-    background-image: url("http://192.168.43.167:8000/static/images/banner-1.png");
+    background-image: url("http://localhost:8000/static/images/banner-1.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

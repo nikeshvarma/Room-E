@@ -27,7 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Domain Name
-DOMAIN_NAME = "http://192.168.43.167:8000"
+DOMAIN_NAME = "http://localhost:8000"
 
 # Application definition
 

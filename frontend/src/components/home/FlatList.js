@@ -11,18 +11,30 @@ import {useForm} from "react-hook-form";
 
 const FlatList = (props) => {
 
+    let query = props.location?.state?.query;
     const [flats, setFlats] = useState([]);
+    const [location, setLocation] = useState(query)
     const [loading, setLoading] = useState(true);
-    const query = props.location?.state?.query;
     const {register, handleSubmit} = useForm();
     const dispatch = useDispatch();
     const authToken = Cookies.get('auth_token');
 
     const filterFormSubmit = data => {
-        axios.get('/flat/search/', {params: data})
+        let params = {
+            'city': data.city,
+            'budget': [data?.min_budget, data?.max_budget],
+            'flat_types': data.house_type,
+            'area': [data?.min_area, data?.max_area],
+            'order': data.order
+        }
+
+        axios.get('/flat/search/', {params: params})
             .then((res) => setFlats(res.data))
-            .then((res) => console.log(res))
             .catch((err) => console.log(err))
+    }
+
+    const setNewLocation = (event) => {
+        setLocation(event.target.value);
     }
 
     useEffect(() => {
@@ -32,10 +44,17 @@ const FlatList = (props) => {
             dispatch({type: IS_AUTH, payload: authToken})
         }
 
-        console.log(query)
+
+        let params = {
+            'city': query,
+            'budget': ['', ''],
+            'flat_types': [],
+            'area': ['', ''],
+            'order': 'rent-inc'
+        }
 
         async function fetchFlats() {
-            const res = await axios.get('/flat/all/')
+            const res = await axios.get('/flat/search/', {params: params})
             setFlats(res?.data)
             setLoading(false);
         }
@@ -108,7 +127,7 @@ const FlatList = (props) => {
     let sidebar = (
         <div className="w-100 sticky-top mb-3">
             <Card>
-                <form onSubmit={handleSubmit(filterFormSubmit)} method="POST">
+                <form id="filter-form" onSubmit={handleSubmit(filterFormSubmit)} method="POST">
                     <Card.Body>
                         <div className="d-flex justify-content-between mb-4">
                             <button type="reset" className="btn btn-warning w-50 mr-4">Reset</button>
@@ -116,14 +135,29 @@ const FlatList = (props) => {
                         </div>
 
                         <div>
+                            <h5 className="font-weight-bolder">Sort</h5>
+                            <select ref={register} name="order" className="form-control">
+                                <option value="rent-inc">Rent - Low to High</option>
+                                <option value="rent-dec">Rent - High to Low</option>
+                                <option value="size-inc">Size - Low to High</option>
+                                <option value="size-dec">Size - High to Low</option>
+                            </select>
+                        </div>
+
+                        <hr/>
+
+                        <div>
                             <h5 className="font-weight-bolder">Location</h5>
                             <div className="d-flex justify-content-center">
                                 <input
                                     ref={register}
-                                    name="location"
+                                    required={true}
+                                    name="city"
                                     type="text"
                                     className="form-control"
                                     placeholder="City"
+                                    value={location}
+                                    onChange={setNewLocation}
                                 />
                             </div>
                         </div>
@@ -158,15 +192,15 @@ const FlatList = (props) => {
                             <h5 className="font-weight-bold">Flat Types</h5>
                             <div className="d-flex flex-wrap justify-content-between my-3 align-items-baseline">
                                 <div>
-                                    <input id="1bhk" ref={register} type="checkbox" name="1bhk"/>
+                                    <input id="1bhk" ref={register} type="checkbox" name="house_type" value="1"/>
                                     <label className="ml-2" htmlFor="1bhk">1 BHK</label>
                                 </div>
                                 <div>
-                                    <input id="2bhk" ref={register} type="checkbox" name="2bhk"/>
+                                    <input id="2bhk" ref={register} type="checkbox" name="house_type" value="2"/>
                                     <label className="ml-2" htmlFor="2bhk">2 BHK</label>
                                 </div>
                                 <div>
-                                    <input id="3bhk" ref={register} type="checkbox" name="3bhk"/>
+                                    <input id="3bhk" ref={register} type="checkbox" name="house_type" value="3"/>
                                     <label className="ml-2" htmlFor="3bhk">3 BHK</label>
                                 </div>
                             </div>
@@ -223,5 +257,6 @@ const FlatList = (props) => {
         </div>
     );
 };
+
 
 export default FlatList;

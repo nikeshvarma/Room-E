@@ -5,5 +5,5 @@ urlpatterns = [
     path('all/', views.AllFlatView.as_view(), name='home_api'),
     path('detail/', views.FlatDetailView.as_view(), name='flat_detail'),
     path('owner-info/', views.FlatContactDetailsView.as_view()),
-    path('search/', views.FilterSearch.as_view()),
+    path('search/', views.FilterSearchView.as_view()),
 ]

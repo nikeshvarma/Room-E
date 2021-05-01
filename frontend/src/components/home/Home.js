@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import "../../style/home.css";
 import {Button, Card, Col, Container, InputGroup, Row} from "react-bootstrap";
 import {useForm} from "react-hook-form";
@@ -88,7 +88,7 @@ const Home = () => {
                 <Row>
                     <Col md={3} className="my-3 text-center">
                         <h2>Are you a home owner ?</h2>
-                        <Button variant="outline-dark">List Your Property</Button>
+                        <Link to='/register/' className="btn btn-dark text-white">List Your Property</Link>
                     </Col>
                     <Col md={3} className="my-3">
                         <Card className="shadow">

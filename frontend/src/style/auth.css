@@ -3,12 +3,12 @@
     margin-bottom: 100px;
 }
 
-.auth-form-width{
+.auth-form-width {
     width: 540px;
 }
 
 @media (max-width: 768px) {
-    .auth-form-width{
+    .auth-form-width {
         width: 92%;
     }
 }

@@ -1,6 +1,6 @@
-from rest_framework.generics import RetrieveAPIView
-
-from .serializers import UserInfoSerializer
+from rest_framework.generics import RetrieveAPIView, CreateAPIView
+from .serializers import UserInfoSerializer, OwnerDetailsSerializer
+from .models import OwnerDetails
 
 
 class UserInfoView(RetrieveAPIView):
@@ -8,3 +8,8 @@ class UserInfoView(RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+
+class OwnerRegisterView(CreateAPIView):
+    serializer_class = OwnerDetailsSerializer
+    queryset = OwnerDetails.objects.all()

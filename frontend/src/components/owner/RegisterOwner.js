@@ -1,31 +1,37 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Col, Container, Form, Row} from 'react-bootstrap';
-import {useSelector} from "react-redux";
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
+import {useForm} from "react-hook-form";
 
 const RegisterOwner = () => {
 
-    const isAuth = useSelector(state => state.auth);
     const AuthToken = Cookies.get('auth_token');
-    const [value, setValue] = useState([]);
-    const isRegistered = value?.is_owner;
+    const [userInfo, setUserInfo] = useState([]);
+    const {register, handleSubmit} = useForm();
+    const isRegistered = userInfo?.is_owner;
+    const history = useHistory();
 
+    const onSubmit = (data) => {
+        axios.post('/user/owner-register/', data, {headers: {Authorization: 'token ' + AuthToken}})
+            .then(() => history.push('/dashboard/'))
+            .catch((err) => console.log(err))
+    }
 
     useEffect(() => {
         window.scrollTo(0, 0);
 
         const getUserInfo = async () => {
             const res = await axios.get('/user/info/', {headers: {'Authorization': 'token ' + AuthToken}})
-            setValue(res.data)
+            setUserInfo(res.data)
         }
 
         getUserInfo();
 
     }, [])
 
-    if (isAuth && !isRegistered) {
+    if (!isRegistered) {
         return (
             <Container sm={'fluid'} className="my-3">
                 <Row>
@@ -34,43 +40,48 @@ const RegisterOwner = () => {
                         <hr/>
                     </Col>
                     <Col sm={12}>
-                        <Form>
+                        <Form onSubmit={handleSubmit(onSubmit)}>
                             <Form.Row className="justify-content-between">
                                 <Form.Group as={Col}>
                                     <Form.Label>First Name</Form.Label>
-                                    <Form.Control value={value.first_name} type="text" disabled/>
+                                    <Form.Control value={userInfo.first_name} type="text" disabled/>
                                 </Form.Group>
 
                                 <Form.Group as={Col}>
                                     <Form.Label>Last Name</Form.Label>
-                                    <Form.Control value={value.last_name} type="text" disabled/>
+                                    <Form.Control value={userInfo.last_name} type="text" disabled/>
                                 </Form.Group>
                             </Form.Row>
 
-                            <Form.Group>
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control value={value.email} type="email" disabled/>
-                            </Form.Group>
-
+                            <Form.Row className="justify-content-between">
+                                <Form.Group as={Col}>
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control value={userInfo.email} type="email" name="email" disabled/>
+                                </Form.Group>
+                                <Form.Group as={Col}>
+                                    <Form.Label>Phone Number</Form.Label>
+                                    <Form.Control value={userInfo.phone_number} type="tel" disabled/>
+                                </Form.Group>
+                            </Form.Row>
                             <Form.Group>
                                 <Form.Label>Address</Form.Label>
-                                <Form.Control placeholder="Address"/>
+                                <Form.Control placeholder="Address" name="address" ref={register({required: "This field is required"})}/>
                             </Form.Group>
 
                             <Form.Row>
                                 <Form.Group as={Col}>
                                     <Form.Label>City</Form.Label>
-                                    <Form.Control placeholder="City"/>
+                                    <Form.Control placeholder="City" name="city" ref={register({required: "This field is required"})}/>
                                 </Form.Group>
 
                                 <Form.Group as={Col}>
                                     <Form.Label>State</Form.Label>
-                                    <Form.Control type="text" placeholder="State"/>
+                                    <Form.Control type="text" placeholder="State" name="state" ref={register({required: "This field is required"})}/>
                                 </Form.Group>
 
                                 <Form.Group as={Col}>
                                     <Form.Label>Pincode</Form.Label>
-                                    <Form.Control type="text" maxLength="6" pattern="^[1-9][0-9]{5}$"/>
+                                    <Form.Control type="text" maxLength="6" name="pincode" ref={register({required: "This field is required"})} pattern="^[1-9][0-9]{5}$"/>
                                 </Form.Group>
                             </Form.Row>
 
@@ -90,10 +101,8 @@ const RegisterOwner = () => {
                 </Row>
             </Container>
         );
-    } else if (isAuth && isRegistered) {
-        return <Redirect to='/dashboard/'/>
     } else {
-        return <Redirect to='/signup/'/>
+        return <Redirect to='/dashboard/'/>
     }
 }
 

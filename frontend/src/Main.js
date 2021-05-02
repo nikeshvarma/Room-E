@@ -10,7 +10,9 @@ import Signup from "./components/auth/Signup";
 import Logout from "./components/auth/Logout";
 import Footer from "./components/layout/Footer";
 import FlatDetail from "./components/home/FlatDetail";
-import registerOwner from "./components/owner/registerOwner";
+import RegisterOwner from "./components/owner/RegisterOwner";
+import OwnerDashboard from "./components/owner/OwnerDashboard";
+import ProtectedRoute from "./components/auth/protected.route";
 
 const Main = () => {
     return (
@@ -24,7 +26,8 @@ const Main = () => {
                 <Route exact path="/search/" component={FlatList}/>
                 <Route exact path="/about/" component={About}/>
                 <Route exact path="/view/property/:flatId/" component={FlatDetail}/>
-                <Route exact path="/register/" component={registerOwner}/>
+                <ProtectedRoute exact path="/register/" component={RegisterOwner}/>
+                <ProtectedRoute exact path="/dashboard/" component={OwnerDashboard}/>
                 <Route component={Notfound}/>
             </Switch>
             <Footer/>

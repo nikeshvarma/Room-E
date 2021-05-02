@@ -13,6 +13,7 @@ import FlatDetail from "./components/home/FlatDetail";
 import RegisterOwner from "./components/owner/RegisterOwner";
 import OwnerDashboard from "./components/owner/OwnerDashboard";
 import ProtectedRoute from "./components/auth/protected.route";
+import AddProperty from "./components/owner/AddProperty";
 
 const Main = () => {
     return (
@@ -28,6 +29,7 @@ const Main = () => {
                 <Route exact path="/view/property/:flatId/" component={FlatDetail}/>
                 <ProtectedRoute exact path="/register/" component={RegisterOwner}/>
                 <ProtectedRoute exact path="/dashboard/" component={OwnerDashboard}/>
+                <ProtectedRoute exact path="/dashboard/add-property/" component={AddProperty}/>
                 <Route component={Notfound}/>
             </Switch>
             <Footer/>

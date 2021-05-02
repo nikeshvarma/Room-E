@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card, Col, Row} from "react-bootstrap";
+import {baseURL} from '../../index';
 import {Link} from "react-router-dom";
 import '../../style/ownerhome.css';
 
@@ -8,8 +9,11 @@ const OwnerDashboard = () => {
         <div>
             <div className="min-vh-100">
                 <Row>
-                    <Col lg={3} className="min-vh-100">
-                        <h3 className="text-center mt-2">Dashboard</h3>
+                    <Col md={3} className="min-vh-100">
+                        <div>
+                            <h3 className="text-center mt-2">Dashboard</h3>
+                            {/*<img src={baseURL + '/static/images/user.png'} className="img-fluid text-center" alt="user-img"/>*/}
+                        </div>
                         <nav>
                             <ul className="list-unstyled list-group text-center sidebar-list">
                                 <Link to='/dashboard/'>
@@ -22,7 +26,7 @@ const OwnerDashboard = () => {
                                         Profile
                                     </li>
                                 </Link>
-                                <Link to='/owner/properties/'>
+                                <Link to='/dashboard/add-property/'>
                                     <li className="list-group-item">
                                         Properties
                                     </li>
@@ -35,7 +39,7 @@ const OwnerDashboard = () => {
                             </ul>
                         </nav>
                     </Col>
-                    <Col lg={9}>
+                    <Col md={9}>
                         <Row className="mt-3">
                             <Col>
                                 <Card>
